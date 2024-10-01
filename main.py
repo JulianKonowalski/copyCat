@@ -4,5 +4,7 @@ from copyFiles import copyFiles
 
 def main():
     directory, destination = getArgs()
-    if os.path.exists(directory):
-        copyFiles(directory, destination)
+    if not os.path.exists(directory):
+        print('No such base directory')
+        return
+    copyFiles(directory, destination)

@@ -2,6 +2,15 @@ import os
 
 BUFFERSIZE = 1024
 
+def __makeDir__(dir):
+    while True:
+        try:
+            os.mkdir(dir)
+            break
+        except FileNotFoundError:
+            parentDir = os.path.join(dir, os.pardir)
+            __makeDir__(parentDir)
+
 def __copyFile__(filePath, destination):
     filename = os.path.basename(filePath)
     rfile = open(filePath, 'rb')
@@ -14,6 +23,8 @@ def __copyFile__(filePath, destination):
     wfile.close()
 
 def copyFiles(directory, destination):
+    if not os.path.exists(destination):
+        __makeDir__(destination)
     for path in os.listdir(directory):
         fullPath = os.path.join(directory, path)
         if os.path.isdir(fullPath):
