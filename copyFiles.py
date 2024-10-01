@@ -29,7 +29,6 @@ def copyFiles(directory, destination):
         fullPath = os.path.join(directory, path)
         if os.path.isdir(fullPath):
             subDestination = os.path.join(destination, path)
-            os.mkdir(subDestination)
             copyFiles(fullPath, subDestination)
             continue
         __copyFile__(fullPath, destination)

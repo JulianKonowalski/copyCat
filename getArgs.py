@@ -1,4 +1,5 @@
 import argparse
+import os
 
 def getArgs():
     parser = argparse.ArgumentParser(
@@ -8,4 +9,6 @@ def getArgs():
     parser.add_argument('directory')
     parser.add_argument('destination')
     args = parser.parse_args()
-    return (args.directory, args.destination)
+    directory = os.path.abspath(args.directory)
+    destination = os.path.abspath(args.destination)
+    return (directory, destination)
